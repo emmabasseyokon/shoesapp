@@ -3,22 +3,24 @@
 :root {
   --background: #ffffff;
   --foreground: #0a0a0a;
-  --brand-50: #faf5f0;
-  --brand-100: #f0e4d6;
-  --brand-200: #e0c5a8;
-  --brand-300: #cda274;
-  --brand-400: #bf854e;
-  --brand-500: #b37236;
-  --brand-600: #a05c2c;
-  --brand-700: #854727;
-  --brand-800: #6d3a25;
-  --brand-900: #5a3121;
+  /* Brand: black scale */
+  --brand-50: #f5f5f5;
+  --brand-100: #e5e5e5;
+  --brand-200: #cccccc;
+  --brand-300: #999999;
+  --brand-400: #555555;
+  --brand-500: #000000;
+  --brand-600: #000000;
+  --brand-700: #000000;
+  --brand-800: #000000;
+  --brand-900: #000000;
+  /* Surface: white → light gray → dark gray → black */
   --surface-50: #ffffff;
-  --surface-100: #f5f5f5;
-  --surface-200: #e5e5e5;
-  --surface-300: #6b6b6b;
+  --surface-100: #f9f9f9;
+  --surface-200: #eeeeee;
+  --surface-300: #888888;
   --surface-700: #000000;
-  --surface-800: #f5f5f5;
+  --surface-800: #f4f4f4;
   --surface-900: #ffffff;
 }
 
