@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { useCartStore } from "@/store/cart";
 import { useToast } from "@/components/ui/Toast";
 import { createClient } from "@/lib/supabase/client";
@@ -210,9 +211,11 @@ export default function CheckoutPage() {
                   <div key={item.variant.id} className="flex gap-3">
                     <div className="h-12 w-12 shrink-0 rounded-lg overflow-hidden bg-surface-700">
                       {item.product.images?.[0] && (
-                        <img
+                        <Image
                           src={item.product.images[0]}
                           alt={item.product.name}
+                          width={48}
+                          height={48}
                           className="h-full w-full object-cover"
                         />
                       )}

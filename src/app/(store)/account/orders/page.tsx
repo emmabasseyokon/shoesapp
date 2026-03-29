@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import Image from "next/image";
 import { createClient } from "@/lib/supabase/server";
 import { Badge } from "@/components/ui/Badge";
 import { formatPrice } from "@/lib/utils";
@@ -75,9 +76,11 @@ export default async function CustomerOrdersPage() {
                 {order.items?.map((item: { id: string; quantity: number; price: number; product?: { name: string; images: string[] }; variant?: { size: string } }) => (
                   <div key={item.id} className="flex items-center gap-4">
                     {item.product?.images?.[0] && (
-                      <img
+                      <Image
                         src={item.product.images[0]}
                         alt={item.product?.name || ""}
+                        width={48}
+                        height={48}
                         className="h-12 w-12 rounded-lg object-cover"
                       />
                     )}

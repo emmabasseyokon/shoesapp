@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useCartStore } from "@/store/cart";
 import { useToast } from "@/components/ui/Toast";
 import { Button } from "@/components/ui/Button";
@@ -36,10 +37,11 @@ export function ProductDetail({ product }: ProductDetailProps) {
         {/* Main Image */}
         <div className="aspect-square overflow-hidden rounded-xl bg-surface-800 border border-surface-700">
           {product.images?.[selectedImage] ? (
-            <img
+            <Image
               src={product.images[selectedImage]}
               alt={product.name}
-              className="h-full w-full object-cover"
+              fill
+              className="object-cover"
             />
           ) : (
             <div className="flex h-full w-full items-center justify-center text-surface-300">
@@ -61,9 +63,11 @@ export function ProductDetail({ product }: ProductDetailProps) {
                     : "border-surface-700 hover:border-surface-300"
                 }`}
               >
-                <img
+                <Image
                   src={img}
                   alt={`${product.name} ${i + 1}`}
+                  width={64}
+                  height={64}
                   className="h-full w-full object-cover"
                 />
               </button>

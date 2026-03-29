@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import Image from "next/image";
 import { createClient } from "@/lib/supabase/client";
 import { Upload, X, Loader2 } from "lucide-react";
 
@@ -98,9 +99,11 @@ export function ImageUploader({ images, onChange }: ImageUploaderProps) {
               key={i}
               className="relative h-20 w-20 rounded-lg overflow-hidden border border-surface-700 group"
             >
-              <img
+              <Image
                 src={url}
                 alt={`Product ${i + 1}`}
+                width={80}
+                height={80}
                 className="h-full w-full object-cover"
               />
               <button

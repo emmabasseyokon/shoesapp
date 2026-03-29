@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { formatPrice } from "@/lib/utils";
 import type { Product } from "@/types";
 
@@ -20,10 +21,11 @@ export function ProductCard({ product }: ProductCardProps) {
       {/* Image */}
       <div className="relative aspect-square overflow-hidden bg-surface-700">
         {product.images?.[0] ? (
-          <img
+          <Image
             src={product.images[0]}
             alt={product.name}
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-110"
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center text-surface-300">

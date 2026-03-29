@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { createClient } from "@/lib/supabase/server";
 import { Button } from "@/components/ui/Button";
 import { formatPrice } from "@/lib/utils";
@@ -67,9 +68,11 @@ export default async function AdminProductsPage() {
                       <div className="flex items-center gap-3">
                         <div className="h-10 w-10 shrink-0 rounded-lg overflow-hidden bg-surface-700">
                           {product.images?.[0] && (
-                            <img
+                            <Image
                               src={product.images[0]}
                               alt={product.name}
+                              width={40}
+                              height={40}
                               className="h-full w-full object-cover"
                             />
                           )}

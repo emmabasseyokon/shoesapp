@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useCartStore } from "@/store/cart";
 import { Button } from "@/components/ui/Button";
 import { formatPrice } from "@/lib/utils";
@@ -43,9 +44,11 @@ export default function CartPage() {
               {/* Image */}
               <div className="h-24 w-24 shrink-0 rounded-lg overflow-hidden bg-surface-700">
                 {item.product.images?.[0] ? (
-                  <img
+                  <Image
                     src={item.product.images[0]}
                     alt={item.product.name}
+                    width={96}
+                    height={96}
                     className="h-full w-full object-cover"
                   />
                 ) : (

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { createClient } from "@/lib/supabase/client";
 import { Badge } from "@/components/ui/Badge";
 import { formatPrice } from "@/lib/utils";
@@ -136,9 +137,11 @@ export default function AdminOrdersPage() {
                 {order.items?.map((item) => (
                   <div key={item.id} className="flex items-center gap-3 text-sm">
                     {item.product?.images?.[0] && (
-                      <img
+                      <Image
                         src={item.product.images[0]}
-                        alt=""
+                        alt={item.product?.name || ""}
+                        width={32}
+                        height={32}
                         className="h-8 w-8 rounded object-cover"
                       />
                     )}

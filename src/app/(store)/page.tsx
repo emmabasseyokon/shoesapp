@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { createClient } from "@/lib/supabase/server";
 import { ProductGrid } from "@/components/products/ProductGrid";
 import { ArrowRight, Truck, Shield, RefreshCw } from "lucide-react";
@@ -66,10 +67,11 @@ export default async function HomePage() {
                 className="group relative flex h-32 items-center justify-center rounded-xl border border-surface-700 bg-surface-800 overflow-hidden hover:border-brand-500/50 transition-all"
               >
                 {cat.image_url && (
-                  <img
+                  <Image
                     src={cat.image_url}
                     alt={cat.name}
-                    className="absolute inset-0 h-full w-full object-cover opacity-30 group-hover:opacity-50 transition-opacity"
+                    fill
+                    className="object-cover opacity-30 group-hover:opacity-50 transition-opacity"
                   />
                 )}
                 <span className="relative z-10 text-sm font-semibold text-white">
