@@ -2,25 +2,25 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #0a0a0a;
-  /* Brand: black scale */
-  --brand-50: #f5f5f5;
-  --brand-100: #e5e5e5;
-  --brand-200: #cccccc;
-  --brand-300: #999999;
-  --brand-400: #555555;
+  --foreground: #000000;
+  /* Brand: pure black */
+  --brand-50: #ffffff;
+  --brand-100: #ffffff;
+  --brand-200: #ffffff;
+  --brand-300: #000000;
+  --brand-400: #000000;
   --brand-500: #000000;
   --brand-600: #000000;
   --brand-700: #000000;
   --brand-800: #000000;
   --brand-900: #000000;
-  /* Surface: white → light gray → dark gray → black */
+  /* Surface: pure white and pure black only */
   --surface-50: #ffffff;
-  --surface-100: #f9f9f9;
-  --surface-200: #eeeeee;
-  --surface-300: #888888;
+  --surface-100: #ffffff;
+  --surface-200: #000000;
+  --surface-300: #000000;
   --surface-700: #000000;
-  --surface-800: #f4f4f4;
+  --surface-800: #ffffff;
   --surface-900: #ffffff;
 }
 
