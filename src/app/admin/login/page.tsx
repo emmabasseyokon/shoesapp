@@ -53,7 +53,7 @@ export default function AdminLoginPage() {
             </svg>
           </span>
           <h1 className="text-[26px] font-extrabold tracking-[0.3px] text-ink m-0">
-            HUSHCOBBLER
+            GEEMANFOOTWEARS
           </h1>
           <p className="text-muted text-[15px] mt-1 m-0">Admin sign in</p>
         </div>
@@ -73,7 +73,7 @@ export default function AdminLoginPage() {
             <input
               type="email"
               required
-              placeholder="admin@hushcobbler.ng"
+              placeholder="admin@geemanfootwears.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="font-[inherit] text-[16px] font-normal px-[13px] py-[11px] border border-[#ced4da] rounded-[7px] w-full outline-none focus:border-accent focus:shadow-[0_0_0_3px_color-mix(in_srgb,#198754_22%,transparent)]"

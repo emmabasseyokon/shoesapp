@@ -53,7 +53,7 @@ export function Navbar() {
             </svg>
           </span>
           <span className="font-extrabold text-[clamp(18px,5vw,26px)] tracking-[0.3px] text-ink whitespace-nowrap">
-            HUSHCOBBLER
+            GEEMANFOOTWEARS
           </span>
         </Link>
 

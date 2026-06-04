@@ -3,34 +3,6 @@ import Link from "next/link";
 export function Footer() {
   return (
     <>
-      {/* About section */}
-      <section className="bg-[#f7f8fa] px-5 py-12 md:px-12 md:py-14" id="about">
-        <h2 className="text-center font-serif text-[clamp(28px,6vw,40px)] font-bold mb-7">
-          About Us
-        </h2>
-        <div className="max-w-[1500px] mx-auto flex flex-col gap-[22px] text-center">
-          <p className="m-0 text-[clamp(16px,4.4vw,20px)] leading-[1.5] text-[#1c1c1c]">
-            At <strong>Hushcobbler</strong>, footwear is not just protection —
-            it&apos;s identity, confidence, and elegance.
-          </p>
-          <p className="m-0 text-[clamp(16px,4.4vw,20px)] leading-[1.5] text-[#1c1c1c]">
-            Founded by <strong>Emmanuel Bassey</strong>, popularly known as{" "}
-            <strong>HushCobbler or HushMade</strong>, our mission is to craft
-            versatile, handcrafted footwear blending tradition with modern
-            design.
-          </p>
-          <p className="m-0 text-[clamp(16px,4.4vw,20px)] leading-[1.5] text-[#1c1c1c]">
-            Our shoes <em>beautify your steps</em>, elevate your style, and
-            make you stand out. From casual wear to premium collections, every
-            product is durable, comfortable, and original.
-          </p>
-          <p className="m-0 text-[clamp(16px,4.4vw,20px)] leading-[1.5] text-[#1c1c1c]">
-            We are not just making footwear — we are building confidence, one
-            step at a time.
-          </p>
-        </div>
-      </section>
-
       {/* Footer */}
       <footer className="bg-footer text-[#f4f4f4] pt-11 px-5 md:px-12">
         <div className="max-w-[1500px] mx-auto grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1fr] gap-8 pb-9">
@@ -45,7 +17,7 @@ export function Footer() {
                   <path d="M11 26c1.5-3 3-5 6-5s5 1.5 6 4" stroke="#1b1b1b" strokeWidth="1.4" fill="none" />
                 </svg>
               </span>
-              <span className="font-serif text-[24px] font-bold">Hushcobbler</span>
+              <span className="font-serif text-[24px] font-bold">GeemanFootwears</span>
             </div>
             <p className="text-[#c9c9c9] text-[16px] leading-[1.6] max-w-[460px] m-0">
               Handcrafted footwear that beautifies your steps. Every pair is
@@ -62,12 +34,6 @@ export function Footer() {
             >
               Products
             </Link>
-            <Link
-              href="/#about"
-              className="block text-[#dcdcdc] no-underline text-[17px] mb-[14px] w-fit transition-colors duration-150 hover:text-white"
-            >
-              About
-            </Link>
           </div>
 
           {/* Follow */}
@@ -75,7 +41,7 @@ export function Footer() {
             <h4 className="text-[19px] font-bold m-0 mb-4">Follow Us</h4>
             <div className="flex gap-[22px]">
               <a
-                href="https://instagram.com/hushcobbler"
+                href="https://instagram.com/geemanfootwears"
                 aria-label="Instagram"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -94,7 +60,7 @@ export function Footer() {
         </div>
 
         <div className="max-w-[1500px] mx-auto border-t border-[#2a2a2a] text-center py-[22px] text-[#cfcfcf] text-[15px]">
-          &copy; 2026 Hushcobbler. All rights reserved.
+          &copy; 2026 GeemanFootwears. All rights reserved.
         </div>
       </footer>
     </>

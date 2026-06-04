@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "HushCobbler – Footwear",
+  title: "GeemanFootwears – Footwear",
   description:
     "Handcrafted footwear that beautifies your steps. Versatile, durable, and original.",
 };
