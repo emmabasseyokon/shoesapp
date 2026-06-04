@@ -1,30 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { usePathname } from "next/navigation";
-import { createClient } from "@/lib/supabase/client";
 
 const LINKS = [
   { href: "/", label: "Home" },
   { href: "/products", label: "Products" },
 ];
 
-export function Navbar() {
+export function Navbar({ isAdmin }: { isAdmin: boolean }) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
   const pathname = usePathname();
-
-  useEffect(() => {
-    const supabase = createClient();
-    supabase.auth.getUser().then(({ data }) => {
-      setIsAdmin(data.user?.app_metadata?.role === "admin");
-    });
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setIsAdmin(session?.user?.app_metadata?.role === "admin");
-    });
-    return () => subscription.unsubscribe();
-  }, []);
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
