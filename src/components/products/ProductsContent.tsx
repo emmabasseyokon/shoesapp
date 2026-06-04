@@ -66,9 +66,6 @@ export function ProductsContent({ products }: Props) {
             </div>
             <div className="px-5 pb-[22px] pt-5 flex flex-col gap-3 text-center flex-1">
               <h3 className="text-[clamp(19px,4.5vw,22px)] font-bold m-0">{p.name}</h3>
-              {p.description && (
-                <p className="text-muted m-0 text-[16px]">{p.description}</p>
-              )}
               <div className="text-[22px] font-extrabold my-1">{naira(p.price)}</div>
               <button
                 className="w-full border border-[#212529] rounded-[7px] px-4 py-3 text-[16px] font-semibold cursor-pointer transition-colors bg-white text-ink hover:bg-[#f1f3f5]"

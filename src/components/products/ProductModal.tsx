@@ -61,9 +61,6 @@ export function ProductModal({ product, onClose }: Props) {
             photos={productPhotos(product)}
             name={product.name}
           />
-          <p className="text-[17px] m-0 mb-[14px]">
-            {product.description || "Handcrafted footwear."}
-          </p>
           <div className="text-[clamp(24px,6vw,30px)] font-extrabold">
             {naira(product.price)}
           </div>
@@ -84,7 +81,7 @@ export function ProductModal({ product, onClose }: Props) {
               onClose();
             }}
           >
-            Order on WhatsApp
+            Order
           </button>
         </div>
       </div>
