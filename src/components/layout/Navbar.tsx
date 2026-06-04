@@ -1,18 +1,30 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { createClient } from "@/lib/supabase/client";
 
 const LINKS = [
   { href: "/", label: "Home" },
   { href: "/products", label: "Products" },
-  { href: "/admin", label: "Admin" },
 ];
 
 export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const pathname = usePathname();
+
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.auth.getUser().then(({ data }) => {
+      setIsAdmin(data.user?.app_metadata?.role === "admin");
+    });
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setIsAdmin(session?.user?.app_metadata?.role === "admin");
+    });
+    return () => subscription.unsubscribe();
+  }, []);
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
@@ -115,6 +127,24 @@ export function Navbar() {
               {label}
             </Link>
           ))}
+          {isAdmin && (
+            <Link
+              href="/admin"
+              onClick={() => setMenuOpen(false)}
+              className={`
+                no-underline font-medium transition-colors duration-150
+                py-[13px] border-b border-line text-[18px]
+                min-[860px]:py-1 min-[860px]:border-none
+                ${
+                  isActive("/admin")
+                    ? "text-accent font-semibold"
+                    : "text-[#495057] hover:text-ink"
+                }
+              `}
+            >
+              Admin
+            </Link>
+          )}
         </div>
       </nav>
     </header>
