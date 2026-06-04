@@ -20,11 +20,6 @@ export default async function ProductsPage() {
 
   return (
     <div className="max-w-[1240px] mx-auto px-5 py-7 pb-16 md:px-12 md:py-[38px]">
-      <div className="flex items-center justify-between gap-[14px] flex-wrap mb-6">
-        <h1 className="text-[clamp(28px,6vw,42px)] font-extrabold tracking-[-0.5px] m-0">
-          Our Products
-        </h1>
-      </div>
       <ProductsContent products={products} />
     </div>
   );

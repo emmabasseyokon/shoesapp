@@ -7,7 +7,6 @@ interface FormState {
   name: string;
   price: string;
   stock: string;
-  description: string;
   images: string[];
 }
 
@@ -77,7 +76,6 @@ export function ProductForm({ initial = {}, onClose, onSave }: Props) {
     name: initial.name ?? "",
     price: initial.price != null ? String(initial.price) : "",
     stock: initial.stock != null ? String(initial.stock) : "",
-    description: initial.description ?? "",
     images: initial.images?.filter(Boolean) ?? [],
   });
   const [uploading, setUploading] = useState(false);
@@ -120,7 +118,7 @@ export function ProductForm({ initial = {}, onClose, onSave }: Props) {
         name: f.name.trim(),
         price: Number(f.price) || 0,
         stock: Number(f.stock) || 0,
-        description: f.description.trim(),
+        description: "",
         images: f.images,
       });
       onClose();
@@ -258,17 +256,6 @@ export function ProductForm({ initial = {}, onClose, onSave }: Props) {
             </label>
           </div>
 
-          {/* Description */}
-          <label className="flex flex-col gap-[6px] text-[15px] font-semibold">
-            <span>Description</span>
-            <textarea
-              className="font-[inherit] text-[16px] font-normal px-[13px] py-[11px] border border-[#ced4da] rounded-[7px] w-full outline-none resize-y focus:border-accent focus:shadow-[0_0_0_3px_color-mix(in_srgb,#198754_22%,transparent)]"
-              value={f.description}
-              onChange={set("description")}
-              rows={3}
-              placeholder="Short description"
-            />
-          </label>
         </div>
 
         {/* Foot */}

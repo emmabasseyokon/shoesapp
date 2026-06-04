@@ -44,14 +44,6 @@ export default function AdminLoginPage() {
       <div className="w-full max-w-[420px]">
         {/* Logo */}
         <div className="flex flex-col items-center mb-8">
-          <span className="w-[56px] h-[56px] border border-[#cfcfcf] rounded-[6px] overflow-hidden bg-white p-[4px] mb-4">
-            <svg viewBox="0 0 40 40" width="48" height="48" className="block w-full h-full rounded-[4px]">
-              <rect width="40" height="40" rx="4" fill="#1b1b1b" />
-              <path d="M8 25c2-1 4-1 6 0 3 1.4 6 1.4 9 0 2-1 4-1 7 0l2 .8V29H8z" fill="#cdb79a" />
-              <circle cx="15" cy="14" r="4.4" fill="#cdb79a" />
-              <path d="M11 26c1.5-3 3-5 6-5s5 1.5 6 4" stroke="#1b1b1b" strokeWidth="1.4" fill="none" />
-            </svg>
-          </span>
           <h1 className="text-[26px] font-extrabold tracking-[0.3px] text-ink m-0">
             GEEMANFOOTWEARS
           </h1>
