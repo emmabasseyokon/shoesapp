@@ -2,74 +2,101 @@ import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="border-t border-surface-700 bg-surface-900">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <>
+      {/* About section */}
+      <section className="bg-[#f7f8fa] px-5 py-12 md:px-12 md:py-14" id="about">
+        <h2 className="text-center font-serif text-[clamp(28px,6vw,40px)] font-bold mb-7">
+          About Us
+        </h2>
+        <div className="max-w-[1500px] mx-auto flex flex-col gap-[22px] text-center">
+          <p className="m-0 text-[clamp(16px,4.4vw,20px)] leading-[1.5] text-[#1c1c1c]">
+            At <strong>Hushcobbler</strong>, footwear is not just protection —
+            it&apos;s identity, confidence, and elegance.
+          </p>
+          <p className="m-0 text-[clamp(16px,4.4vw,20px)] leading-[1.5] text-[#1c1c1c]">
+            Founded by <strong>Emmanuel Bassey</strong>, popularly known as{" "}
+            <strong>HushCobbler or HushMade</strong>, our mission is to craft
+            versatile, handcrafted footwear blending tradition with modern
+            design.
+          </p>
+          <p className="m-0 text-[clamp(16px,4.4vw,20px)] leading-[1.5] text-[#1c1c1c]">
+            Our shoes <em>beautify your steps</em>, elevate your style, and
+            make you stand out. From casual wear to premium collections, every
+            product is durable, comfortable, and original.
+          </p>
+          <p className="m-0 text-[clamp(16px,4.4vw,20px)] leading-[1.5] text-[#1c1c1c]">
+            We are not just making footwear — we are building confidence, one
+            step at a time.
+          </p>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-footer text-[#f4f4f4] pt-11 px-5 md:px-12">
+        <div className="max-w-[1500px] mx-auto grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1fr] gap-8 pb-9">
           {/* Brand */}
           <div>
-            <h3 className="text-lg font-bold text-white">
-              SHOES<span className="text-brand-500">APP</span>
-            </h3>
-            <p className="mt-3 text-sm text-surface-300 max-w-xs">
-              Premium footwear for every occasion. Quality, comfort, and style
-              delivered to your doorstep.
+            <div className="flex items-center gap-3 mb-[14px]">
+              <span className="w-[38px] h-[38px] border border-[#cfcfcf] rounded-[4px] overflow-hidden bg-white p-[2px]">
+                <svg viewBox="0 0 40 40" width="34" height="34" className="block w-full h-full rounded-[3px]">
+                  <rect width="40" height="40" rx="4" fill="#1b1b1b" />
+                  <path d="M8 25c2-1 4-1 6 0 3 1.4 6 1.4 9 0 2-1 4-1 7 0l2 .8V29H8z" fill="#cdb79a" />
+                  <circle cx="15" cy="14" r="4.4" fill="#cdb79a" />
+                  <path d="M11 26c1.5-3 3-5 6-5s5 1.5 6 4" stroke="#1b1b1b" strokeWidth="1.4" fill="none" />
+                </svg>
+              </span>
+              <span className="font-serif text-[24px] font-bold">Hushcobbler</span>
+            </div>
+            <p className="text-[#c9c9c9] text-[16px] leading-[1.6] max-w-[460px] m-0">
+              Handcrafted footwear that beautifies your steps. Every pair is
+              built for style, comfort, and durability.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-sm font-semibold text-white uppercase tracking-wider">
-              Quick Links
-            </h4>
-            <ul className="mt-4 space-y-2">
-              <li>
-                <Link href="/products" className="text-sm text-surface-300 hover:text-white transition-colors">
-                  All Products
-                </Link>
-              </li>
-              <li>
-                <Link href="/products?category=sneakers" className="text-sm text-surface-300 hover:text-white transition-colors">
-                  Sneakers
-                </Link>
-              </li>
-              <li>
-                <Link href="/products?category=boots" className="text-sm text-surface-300 hover:text-white transition-colors">
-                  Boots
-                </Link>
-              </li>
-              <li>
-                <Link href="/products?category=formal" className="text-sm text-surface-300 hover:text-white transition-colors">
-                  Formal Shoes
-                </Link>
-              </li>
-            </ul>
+            <h4 className="text-[19px] font-bold m-0 mb-4">Quick Links</h4>
+            <Link
+              href="/products"
+              className="block text-[#dcdcdc] no-underline text-[17px] mb-[14px] w-fit transition-colors duration-150 hover:text-white"
+            >
+              Products
+            </Link>
+            <Link
+              href="/#about"
+              className="block text-[#dcdcdc] no-underline text-[17px] mb-[14px] w-fit transition-colors duration-150 hover:text-white"
+            >
+              About
+            </Link>
           </div>
 
-          {/* Contact */}
+          {/* Follow */}
           <div>
-            <h4 className="text-sm font-semibold text-white uppercase tracking-wider">
-              Contact
-            </h4>
-            <ul className="mt-4 space-y-2">
-              <li className="text-sm text-surface-300">
-                support@shoesapp.com
-              </li>
-              <li className="text-sm text-surface-300">
-                +234 800 000 0000
-              </li>
-              <li className="text-sm text-surface-300">
-                Lagos, Nigeria
-              </li>
-            </ul>
+            <h4 className="text-[19px] font-bold m-0 mb-4">Follow Us</h4>
+            <div className="flex gap-[22px]">
+              <a
+                href="https://instagram.com/hushcobbler"
+                aria-label="Instagram"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#f4f4f4] inline-flex transition-opacity duration-150 hover:opacity-75"
+              >
+                <svg viewBox="0 0 24 24" width="26" height="26">
+                  <g fill="none" stroke="currentColor" strokeWidth="2">
+                    <rect x="3" y="3" width="18" height="18" rx="5" />
+                    <circle cx="12" cy="12" r="4" />
+                    <circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none" />
+                  </g>
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
 
-        <div className="mt-10 border-t border-surface-700 pt-6 text-center">
-          <p className="text-sm text-surface-300">
-            &copy; {new Date().getFullYear()} ShoesApp. All rights reserved.
-          </p>
+        <div className="max-w-[1500px] mx-auto border-t border-[#2a2a2a] text-center py-[22px] text-[#cfcfcf] text-[15px]">
+          &copy; 2026 Hushcobbler. All rights reserved.
         </div>
-      </div>
-    </footer>
+      </footer>
+    </>
   );
 }

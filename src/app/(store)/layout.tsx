@@ -1,4 +1,4 @@
-import { Header } from "@/components/layout/Header";
+import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 
 export default function StoreLayout({
@@ -8,8 +8,8 @@ export default function StoreLayout({
 }) {
   return (
     <>
-      <Header />
-      <main className="min-h-screen pt-16">{children}</main>
+      <Navbar />
+      <main>{children}</main>
       <Footer />
     </>
   );

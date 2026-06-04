@@ -235,3 +235,23 @@ WHERE email = 'emmabasseyokon@gmail.com';
 INSERT INTO profiles (id, name, email, role)
 SELECT id, 'Admin', email, 'admin'
 FROM auth.users WHERE email = 'emmabasseyokon@gmail.com';
+
+-- ============================================
+-- HUSHCOBBLER MIGRATION
+-- Add stock column to products table.
+-- Run this in the Supabase SQL editor if you have
+-- an existing database from the previous schema.
+-- ============================================
+ALTER TABLE products ADD COLUMN IF NOT EXISTS stock INTEGER NOT NULL DEFAULT 0;
+
+-- Seed products (optional — clears existing data first)
+-- DELETE FROM products;
+-- INSERT INTO products (name, slug, description, price, stock, images, is_active, is_featured) VALUES
+--   ('Classic Leather Shoes', 'classic-leather-shoes', 'Great shoes', 12000, 20, '{}', true, false),
+--   ('Casual Sneakers', 'casual-sneakers', 'Everyday comfort, all-day wear', 18000, 12, '{}', true, false),
+--   ('Handmade Loafers', 'handmade-loafers', 'Soft sole, hand-stitched leather', 35000, 8, '{}', true, false),
+--   ('Elegant Heels', 'elegant-heels', 'Crossed-strap statement pair', 28000, 6, '{}', true, false),
+--   ('Novela', 'novela', 'Nice leather foot rides', 50000, 4, '{}', true, false),
+--   ('Half Shoe', 'half-shoe', 'Plush slip-on with logo strap', 20000, 4, '{}', true, false),
+--   ('Palm Slides', 'palm-slides', 'Lightweight woven palm slides', 15000, 10, '{}', true, false),
+--   ('Cross Strap Sandals', 'cross-strap-sandals', 'Suede cross-strap sandals', 22000, 7, '{}', true, false);

@@ -1,14 +1,15 @@
 import { createClient } from "@/lib/supabase/server";
-import { HomeGrid } from "@/components/products/HomeGrid";
+import { AdminProducts } from "@/components/admin/AdminProducts";
 import type { Product } from "@/types";
 
-export default async function HomePage() {
+export const dynamic = "force-dynamic";
+
+export default async function AdminPage() {
   const supabase = await createClient();
 
   const { data } = await supabase
     .from("products")
     .select("id, name, slug, description, price, stock, images, is_active, created_at, updated_at")
-    .eq("is_active", true)
     .order("created_at", { ascending: false });
 
   const products: Product[] = (data ?? []).map((p) => ({
@@ -19,8 +20,11 @@ export default async function HomePage() {
   }));
 
   return (
-    <div className="max-w-[1320px] mx-auto px-5 py-3 pb-16 md:px-12">
-      <HomeGrid products={products} />
-    </div>
+    <main className="max-w-[1240px] mx-auto px-5 py-7 pb-16 md:px-12 md:py-[38px]">
+      <h1 className="text-[clamp(28px,6vw,42px)] font-extrabold tracking-[-0.5px] m-0 mb-[22px]">
+        Manage Products
+      </h1>
+      <AdminProducts products={products} />
+    </main>
   );
 }

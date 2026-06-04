@@ -29,30 +29,14 @@ export async function middleware(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  // Protect admin routes (except admin login)
+  // Protect admin routes (except /admin/login)
   if (
     request.nextUrl.pathname.startsWith("/admin") &&
     !request.nextUrl.pathname.startsWith("/admin/login")
   ) {
-    if (!user) {
+    if (!user || user.app_metadata?.role !== "admin") {
       const url = request.nextUrl.clone();
       url.pathname = "/admin/login";
-      return NextResponse.redirect(url);
-    }
-
-    const role = user.app_metadata?.role;
-    if (role !== "admin") {
-      const url = request.nextUrl.clone();
-      url.pathname = "/admin/login";
-      return NextResponse.redirect(url);
-    }
-  }
-
-  // Protect customer account routes
-  if (request.nextUrl.pathname.startsWith("/account")) {
-    if (!user) {
-      const url = request.nextUrl.clone();
-      url.pathname = "/login";
       return NextResponse.redirect(url);
     }
   }
