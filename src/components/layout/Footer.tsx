@@ -11,10 +11,6 @@ export function Footer() {
             <div className="flex items-center gap-3 mb-[14px]">
               <span className="font-serif text-[24px] font-bold">GeemanFootwears</span>
             </div>
-            <p className="text-[#c9c9c9] text-[16px] leading-[1.6] max-w-[460px] m-0">
-              Handcrafted footwear that beautifies your steps. Every pair is
-              built for style, comfort, and durability.
-            </p>
           </div>
 
           {/* Quick Links */}

@@ -74,27 +74,9 @@ export function PhotoCarousel({ photos, name }: Props) {
         </div>
 
         {n > 1 && (
-          <>
-            <button
-              type="button"
-              className="absolute top-1/2 -translate-y-1/2 left-[10px] w-[38px] h-[38px] rounded-full border-none bg-white/92 text-[#1b1b1b] text-2xl grid place-items-center cursor-pointer shadow-[0_2px_8px_rgba(0,0,0,.18)] transition-colors hover:bg-white pb-[3px]"
-              onClick={() => go(-1)}
-              aria-label="Previous photo"
-            >
-              ‹
-            </button>
-            <button
-              type="button"
-              className="absolute top-1/2 -translate-y-1/2 right-[10px] w-[38px] h-[38px] rounded-full border-none bg-white/92 text-[#1b1b1b] text-2xl grid place-items-center cursor-pointer shadow-[0_2px_8px_rgba(0,0,0,.18)] transition-colors hover:bg-white pb-[3px]"
-              onClick={() => go(1)}
-              aria-label="Next photo"
-            >
-              ›
-            </button>
-            <span className="absolute bottom-[10px] right-[10px] px-[9px] py-[3px] rounded-full bg-black/55 text-white text-[13px] font-semibold tracking-[0.02em]">
-              {idx + 1} / {n}
-            </span>
-          </>
+          <span className="absolute bottom-[10px] right-[10px] px-[9px] py-[3px] rounded-full bg-black/55 text-white text-[13px] font-semibold tracking-[0.02em]">
+            {idx + 1} / {n}
+          </span>
         )}
       </div>
 

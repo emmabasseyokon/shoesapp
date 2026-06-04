@@ -53,7 +53,7 @@ export function AdminProducts({ products: initial }: Props) {
     <div className="max-w-[1240px]">
       {/* Add button */}
       <button
-        className="mb-[22px] inline-flex items-center border border-transparent rounded-[7px] px-5 py-3 text-[16px] font-semibold cursor-pointer transition-colors bg-accent text-white hover:bg-accent-dark"
+        className="mb-[22px] w-full sm:w-auto inline-flex items-center justify-center border border-transparent rounded-[7px] px-5 py-3 text-[16px] font-semibold cursor-pointer transition-colors bg-accent text-white hover:bg-accent-dark"
         onClick={() => setEditing({})}
       >
         + Add Product
