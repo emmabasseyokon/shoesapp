@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { createClient } from "@/lib/supabase/client";
 
 interface FormState {
   name: string;
@@ -62,16 +61,14 @@ async function compressImage(file: File): Promise<string> {
 }
 
 async function uploadImage(dataUrl: string): Promise<string> {
-  const supabase = createClient();
-  const res = await fetch(dataUrl);
-  const blob = await res.blob();
-  const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.jpg`;
-  const { error } = await supabase.storage
-    .from("product-images")
-    .upload(fileName, blob, { contentType: "image/jpeg" });
-  if (error) throw new Error(error.message);
-  const { data } = supabase.storage.from("product-images").getPublicUrl(fileName);
-  return data.publicUrl;
+  const res = await fetch("/api/upload", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ dataUrl }),
+  });
+  const json = await res.json();
+  if (!res.ok) throw new Error(json.error ?? "Upload failed");
+  return json.url as string;
 }
 
 export function ProductForm({ initial = {}, onClose, onSave }: Props) {
