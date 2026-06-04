@@ -9,7 +9,7 @@ const LINKS = [
   { href: "/products", label: "Products" },
 ];
 
-export function Navbar({ isAdmin }: { isAdmin: boolean }) {
+export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
 
@@ -30,27 +30,6 @@ export function Navbar({ isAdmin }: { isAdmin: boolean }) {
           className="flex items-center gap-3 no-underline min-w-0"
           onClick={() => setMenuOpen(false)}
         >
-          <span className="flex-none w-[38px] h-[38px] border border-[#cfcfcf] rounded-[4px] overflow-hidden bg-white p-[2px]">
-            <svg
-              viewBox="0 0 40 40"
-              width="34"
-              height="34"
-              className="block w-full h-full rounded-[3px]"
-            >
-              <rect width="40" height="40" rx="4" fill="#1b1b1b" />
-              <path
-                d="M8 25c2-1 4-1 6 0 3 1.4 6 1.4 9 0 2-1 4-1 7 0l2 .8V29H8z"
-                fill="#cdb79a"
-              />
-              <circle cx="15" cy="14" r="4.4" fill="#cdb79a" />
-              <path
-                d="M11 26c1.5-3 3-5 6-5s5 1.5 6 4"
-                stroke="#1b1b1b"
-                strokeWidth="1.4"
-                fill="none"
-              />
-            </svg>
-          </span>
           <span className="font-extrabold text-[clamp(18px,5vw,26px)] tracking-[0.3px] text-ink whitespace-nowrap">
             GEEMANFOOTWEARS
           </span>
@@ -114,24 +93,6 @@ export function Navbar({ isAdmin }: { isAdmin: boolean }) {
               {label}
             </Link>
           ))}
-          {isAdmin && (
-            <Link
-              href="/admin"
-              onClick={() => setMenuOpen(false)}
-              className={`
-                no-underline font-medium transition-colors duration-150
-                py-[13px] border-b border-line text-[18px]
-                min-[860px]:py-1 min-[860px]:border-none
-                ${
-                  isActive("/admin")
-                    ? "text-accent font-semibold"
-                    : "text-[#495057] hover:text-ink"
-                }
-              `}
-            >
-              Admin
-            </Link>
-          )}
         </div>
       </nav>
     </header>

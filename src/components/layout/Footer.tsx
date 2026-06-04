@@ -9,14 +9,6 @@ export function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-[14px]">
-              <span className="w-[38px] h-[38px] border border-[#cfcfcf] rounded-[4px] overflow-hidden bg-white p-[2px]">
-                <svg viewBox="0 0 40 40" width="34" height="34" className="block w-full h-full rounded-[3px]">
-                  <rect width="40" height="40" rx="4" fill="#1b1b1b" />
-                  <path d="M8 25c2-1 4-1 6 0 3 1.4 6 1.4 9 0 2-1 4-1 7 0l2 .8V29H8z" fill="#cdb79a" />
-                  <circle cx="15" cy="14" r="4.4" fill="#cdb79a" />
-                  <path d="M11 26c1.5-3 3-5 6-5s5 1.5 6 4" stroke="#1b1b1b" strokeWidth="1.4" fill="none" />
-                </svg>
-              </span>
               <span className="font-serif text-[24px] font-bold">GeemanFootwears</span>
             </div>
             <p className="text-[#c9c9c9] text-[16px] leading-[1.6] max-w-[460px] m-0">
@@ -33,6 +25,12 @@ export function Footer() {
               className="block text-[#dcdcdc] no-underline text-[17px] mb-[14px] w-fit transition-colors duration-150 hover:text-white"
             >
               Products
+            </Link>
+            <Link
+              href="/admin"
+              className="block text-[#dcdcdc] no-underline text-[17px] mb-[14px] w-fit transition-colors duration-150 hover:text-white"
+            >
+              Admin
             </Link>
           </div>
 

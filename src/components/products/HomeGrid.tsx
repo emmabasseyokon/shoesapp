@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { ProductModal } from "./ProductModal";
 import { productPhotos } from "@/lib/utils";
 import type { Product } from "@/types";
@@ -50,18 +49,10 @@ export function HomeGrid({ products }: Props) {
           <h1 className="font-serif text-[clamp(33px,8.5vw,56px)] leading-[1.06] font-bold m-0 mb-[18px] tracking-[-0.5px] text-balance text-ink">
             Footwear that beautifies your steps.
           </h1>
-          <p className="text-[clamp(16px,4.4vw,20px)] leading-[1.55] text-[#444] m-0 mx-auto mb-[26px] max-w-[560px]">
+          <p className="text-[clamp(16px,4.4vw,20px)] leading-[1.55] text-[#444] m-0 mx-auto max-w-[560px]">
             Versatile, durable, and original — from everyday slides to premium
             collections, every pair is built to make you stand out.
           </p>
-          <div className="flex gap-3 flex-wrap justify-center">
-            <Link
-              href="/products"
-              className="inline-flex items-center justify-center border border-transparent rounded-[7px] px-[22px] py-[13px] text-[16px] font-semibold no-underline transition-colors bg-accent text-white hover:bg-accent-dark"
-            >
-              Shop the collection
-            </Link>
-          </div>
         </div>
       </section>
 
