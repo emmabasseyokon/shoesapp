@@ -69,15 +69,9 @@ export function ProductModal({ product, onClose }: Props) {
         </div>
 
         {/* Foot */}
-        <div className="flex justify-end gap-3 px-5 pb-[22px] pt-4 flex-wrap">
+        <div className="px-5 pb-[22px] pt-4">
           <button
-            className="flex-auto min-w-0 max-w-[180px] border border-transparent rounded-[7px] px-[22px] py-[11px] text-[16px] font-semibold cursor-pointer transition-colors bg-[#6c757d] text-white hover:bg-[#5c636a]"
-            onClick={onClose}
-          >
-            Close
-          </button>
-          <button
-            className="flex-auto min-w-0 max-w-[220px] border border-transparent rounded-[7px] px-[22px] py-[11px] text-[16px] font-semibold cursor-pointer transition-colors bg-accent text-white hover:bg-accent-dark"
+            className="w-full border border-transparent rounded-[7px] px-[22px] py-[13px] text-[16px] font-semibold cursor-pointer transition-colors bg-accent text-white hover:bg-accent-dark"
             onClick={() => {
               orderViaWhatsApp(product);
               onClose();
