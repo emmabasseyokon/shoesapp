@@ -16,10 +16,11 @@ type EditTarget = Partial<Product> | null;
 export function AdminProducts({ products: initial }: Props) {
   const [products, setProducts] = useState<Product[]>(initial);
   const [editing, setEditing] = useState<EditTarget>(null);
+  const [deleteTarget, setDeleteTarget] = useState<Product | null>(null);
   const [isPending, startTransition] = useTransition();
 
   const handleAdd = async (data: {
-    name: string; price: number; stock: number; description: string; images: string[];
+    name: string; price: number; images: string[];
   }) => {
     await createProduct(data);
     startTransition(() => {
@@ -31,7 +32,7 @@ export function AdminProducts({ products: initial }: Props) {
   };
 
   const handleEdit = async (id: string, data: {
-    name: string; price: number; stock: number; description: string; images: string[];
+    name: string; price: number; images: string[];
   }) => {
     await updateProduct(id, data);
     startTransition(() => {
@@ -41,8 +42,10 @@ export function AdminProducts({ products: initial }: Props) {
     });
   };
 
-  const handleDelete = async (id: string) => {
-    if (!confirm("Delete this product?")) return;
+  const handleDelete = async () => {
+    if (!deleteTarget) return;
+    const id = deleteTarget.id;
+    setDeleteTarget(null);
     await deleteProduct(id);
     startTransition(() => {
       setProducts((ps) => ps.filter((p) => p.id !== id));
@@ -65,7 +68,7 @@ export function AdminProducts({ products: initial }: Props) {
           {/* Desktop thead */}
           <thead className="hidden min-[760px]:table-header-group">
             <tr>
-              {["Image", "Name", "Price (₦)", "Stock", "Description", "Actions"].map(
+              {["Image", "Name", "Price (₦)", "Actions"].map(
                 (h) => (
                   <th
                     key={h}
@@ -124,22 +127,6 @@ export function AdminProducts({ products: initial }: Props) {
                     {Number(p.price).toLocaleString("en-NG")}
                   </td>
 
-                  {/* Stock */}
-                  <td
-                    data-label="Stock"
-                    className="flex items-center justify-between gap-4 py-[11px] border-b border-line text-right min-[760px]:table-cell min-[760px]:border-none min-[760px]:px-4 min-[760px]:py-[14px] min-[760px]:text-left before:content-[attr(data-label)] before:flex-none before:text-left before:font-bold before:text-muted before:text-[14px] min-[760px]:before:content-none"
-                  >
-                    {p.stock ?? 0}
-                  </td>
-
-                  {/* Description */}
-                  <td
-                    data-label="Description"
-                    className="flex items-center justify-between gap-4 py-[11px] border-b border-line text-right text-[#333] min-[760px]:table-cell min-[760px]:border-none min-[760px]:px-4 min-[760px]:py-[14px] min-[760px]:text-left min-[760px]:max-w-[360px] before:content-[attr(data-label)] before:flex-none before:text-left before:font-bold before:text-muted before:text-[14px] min-[760px]:before:content-none"
-                  >
-                    {p.description}
-                  </td>
-
                   {/* Actions */}
                   <td
                     data-label="Actions"
@@ -154,7 +141,7 @@ export function AdminProducts({ products: initial }: Props) {
                       </button>
                       <button
                         className="inline-flex border border-transparent rounded-[6px] px-4 py-2 text-[14px] font-semibold cursor-pointer transition-colors bg-danger text-white hover:bg-danger-dark disabled:opacity-60"
-                        onClick={() => handleDelete(p.id)}
+                        onClick={() => setDeleteTarget(p)}
                         disabled={isPending}
                       >
                         Delete
@@ -168,7 +155,7 @@ export function AdminProducts({ products: initial }: Props) {
             {products.length === 0 && (
               <tr className="block min-[760px]:table-row">
                 <td
-                  colSpan={6}
+                  colSpan={4}
                   className="block text-center text-muted py-12 min-[760px]:table-cell"
                 >
                   No products yet. Add your first product!
@@ -178,6 +165,35 @@ export function AdminProducts({ products: initial }: Props) {
           </tbody>
         </table>
       </div>
+
+      {/* Delete confirmation dialog */}
+      {deleteTarget && (
+        <div
+          className="fixed inset-0 bg-black/50 flex items-center justify-center z-[100] p-4"
+          onMouseDown={(e) => { if (e.target === e.currentTarget) setDeleteTarget(null); }}
+        >
+          <div className="bg-white rounded-[12px] w-full max-w-[400px] shadow-[0_30px_80px_rgba(0,0,0,.35)] p-7 flex flex-col gap-5">
+            <h2 className="m-0 text-[20px] font-bold">Delete product?</h2>
+            <p className="m-0 text-[16px] text-[#444]">
+              <span className="font-semibold">{deleteTarget.name}</span> will be permanently removed. This cannot be undone.
+            </p>
+            <div className="flex gap-3">
+              <button
+                className="flex-1 border border-line rounded-[7px] px-4 py-[11px] text-[15px] font-semibold cursor-pointer transition-colors bg-white text-ink hover:bg-[#f1f3f5]"
+                onClick={() => setDeleteTarget(null)}
+              >
+                Cancel
+              </button>
+              <button
+                className="flex-1 border border-transparent rounded-[7px] px-4 py-[11px] text-[15px] font-semibold cursor-pointer transition-colors bg-danger text-white hover:bg-danger-dark"
+                onClick={handleDelete}
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Form modal */}
       {editing !== null && (

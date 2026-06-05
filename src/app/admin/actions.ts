@@ -7,8 +7,6 @@ import { slugify } from "@/lib/utils";
 interface ProductData {
   name: string;
   price: number;
-  stock: number;
-  description: string;
   images: string[];
 }
 
@@ -19,8 +17,6 @@ export async function createProduct(data: ProductData) {
     name: data.name,
     slug: slugify(data.name),
     price: data.price,
-    stock: data.stock,
-    description: data.description,
     images: data.images,
     is_active: true,
     is_featured: false,
@@ -41,8 +37,6 @@ export async function updateProduct(id: string, data: ProductData) {
     .update({
       name: data.name,
       price: data.price,
-      stock: data.stock,
-      description: data.description,
       images: data.images,
     })
     .eq("id", id);

@@ -10,9 +10,7 @@ CREATE TABLE IF NOT EXISTS public.products (
   id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   name        TEXT NOT NULL,
   slug        TEXT NOT NULL UNIQUE,
-  description TEXT NOT NULL DEFAULT '',
   price       INTEGER NOT NULL DEFAULT 0,   -- whole Naira, no decimals
-  stock       INTEGER NOT NULL DEFAULT 0,
   images      TEXT[] DEFAULT '{}',          -- up to 3 public Storage URLs
   is_active   BOOLEAN NOT NULL DEFAULT TRUE,
   is_featured BOOLEAN NOT NULL DEFAULT FALSE,

@@ -6,7 +6,6 @@ import Image from "next/image";
 interface FormState {
   name: string;
   price: string;
-  stock: string;
   images: string[];
 }
 
@@ -15,16 +14,12 @@ interface Props {
     id?: string;
     name?: string;
     price?: number;
-    stock?: number;
-    description?: string;
     images?: string[];
   };
   onClose: () => void;
   onSave: (data: {
     name: string;
     price: number;
-    stock: number;
-    description: string;
     images: string[];
   }) => Promise<void>;
 }
@@ -75,7 +70,6 @@ export function ProductForm({ initial = {}, onClose, onSave }: Props) {
   const [f, setF] = useState<FormState>({
     name: initial.name ?? "",
     price: initial.price != null ? String(initial.price) : "",
-    stock: initial.stock != null ? String(initial.stock) : "",
     images: initial.images?.filter(Boolean) ?? [],
   });
   const [uploading, setUploading] = useState(false);
@@ -117,8 +111,6 @@ export function ProductForm({ initial = {}, onClose, onSave }: Props) {
       await onSave({
         name: f.name.trim(),
         price: Number(f.price) || 0,
-        stock: Number(f.stock) || 0,
-        description: "",
         images: f.images,
       });
       onClose();
@@ -230,31 +222,18 @@ export function ProductForm({ initial = {}, onClose, onSave }: Props) {
             )}
           </label>
 
-          {/* Price + Stock */}
-          <div className="grid grid-cols-2 gap-4">
-            <label className="flex flex-col gap-[6px] text-[15px] font-semibold">
-              <span>Price (₦)</span>
-              <input
-                type="number"
-                min="0"
-                className="font-[inherit] text-[16px] font-normal px-[13px] py-[11px] border border-[#ced4da] rounded-[7px] w-full outline-none focus:border-accent focus:shadow-[0_0_0_3px_color-mix(in_srgb,#198754_22%,transparent)]"
-                value={f.price}
-                onChange={set("price")}
-                placeholder="0"
-              />
-            </label>
-            <label className="flex flex-col gap-[6px] text-[15px] font-semibold">
-              <span>Stock</span>
-              <input
-                type="number"
-                min="0"
-                className="font-[inherit] text-[16px] font-normal px-[13px] py-[11px] border border-[#ced4da] rounded-[7px] w-full outline-none focus:border-accent focus:shadow-[0_0_0_3px_color-mix(in_srgb,#198754_22%,transparent)]"
-                value={f.stock}
-                onChange={set("stock")}
-                placeholder="0"
-              />
-            </label>
-          </div>
+          {/* Price */}
+          <label className="flex flex-col gap-[6px] text-[15px] font-semibold">
+            <span>Price (₦)</span>
+            <input
+              type="number"
+              min="0"
+              className="font-[inherit] text-[16px] font-normal px-[13px] py-[11px] border border-[#ced4da] rounded-[7px] w-full outline-none focus:border-accent focus:shadow-[0_0_0_3px_color-mix(in_srgb,#198754_22%,transparent)]"
+              value={f.price}
+              onChange={set("price")}
+              placeholder="0"
+            />
+          </label>
 
         </div>
 
