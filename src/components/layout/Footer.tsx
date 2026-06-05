@@ -5,14 +5,7 @@ export function Footer() {
     <>
       {/* Footer */}
       <footer className="bg-footer text-[#f4f4f4] pt-11 px-5 md:px-12">
-        <div className="max-w-[1500px] mx-auto grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1fr] gap-8 pb-9">
-          {/* Brand */}
-          <div>
-            <div className="flex items-center gap-3 mb-[14px]">
-              <span className="font-serif text-[24px] font-bold">GeemanFootwears</span>
-            </div>
-          </div>
-
+        <div className="max-w-[1500px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 pb-9">
           {/* Quick Links */}
           <div>
             <h4 className="text-[19px] font-bold m-0 mb-4">Quick Links</h4>

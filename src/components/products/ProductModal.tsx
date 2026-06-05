@@ -43,10 +43,10 @@ export function ProductModal({ product, onClose }: Props) {
         aria-modal="true"
       >
         {/* Head */}
-        <div className="flex items-center justify-between gap-3 px-5 py-[18px] border-b border-line">
+        <div className="relative flex items-center justify-center px-5 py-[18px] border-b border-line">
           <h2 className="m-0 text-[clamp(20px,5vw,26px)] font-bold">{product.name}</h2>
           <button
-            className="bg-none border-none text-[30px] leading-none cursor-pointer text-[#555] w-10 h-10 flex-none"
+            className="absolute right-4 bg-none border-none text-[30px] leading-none cursor-pointer text-[#555] w-10 h-10 flex-none"
             onClick={onClose}
             aria-label="Close"
           >
