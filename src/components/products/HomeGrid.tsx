@@ -43,11 +43,8 @@ export function HomeGrid({ products }: Props) {
       {/* Hero */}
       <section className="flex flex-col items-center text-center gap-[26px] pt-[40px] pb-[18px] min-[920px]:pt-[72px] min-[920px]:pb-[28px]">
         <div className="flex flex-col items-center max-w-[760px]">
-          <span className="inline-block font-mono text-[12px] tracking-[0.14em] uppercase text-accent mb-[14px]">
-            Handcrafted footwear
-          </span>
           <h1 className="font-serif text-[clamp(33px,8.5vw,56px)] leading-[1.06] font-bold m-0 mb-[18px] tracking-[-0.5px] text-balance text-ink">
-            Footwear that beautifies your steps.
+            Proudly Naija handcrafted footwear that beautifies your feet
           </h1>
           <p className="text-[clamp(16px,4.4vw,20px)] leading-[1.55] text-[#444] m-0 mx-auto max-w-[560px]">
             Versatile, durable, and original — from everyday slides to premium
