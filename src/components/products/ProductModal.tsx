@@ -8,7 +8,9 @@ import type { Product } from "@/types";
 const WHATSAPP = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "2349094579266";
 
 function orderViaWhatsApp(p: Product) {
-  const msg = `Hello GeemanFootwears! I'd like to order the *${p.name}* (${naira(p.price)}). Is it available?`;
+  const photos = productPhotos(p);
+  const imageLine = photos.length ? `\n\n${photos[0]}` : "";
+  const msg = `Hello GeemanFootwears! I'd like to order the *${p.name}* (${naira(p.price)}). Is it available?${imageLine}`;
   window.open(
     `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`,
     "_blank",
