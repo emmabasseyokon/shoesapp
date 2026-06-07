@@ -130,7 +130,7 @@ export function AdminProducts({ products: initial }: Props) {
                   {/* Actions */}
                   <td
                     data-label="Actions"
-                    className="flex items-center justify-between gap-4 py-[11px] min-[760px]:table-cell min-[760px]:px-4 min-[760px]:py-[14px] min-[760px]:whitespace-nowrap before:content-[attr(data-label)] before:flex-none before:text-left before:font-bold before:text-muted before:text-[14px] min-[760px]:before:content-none"
+                    className="flex items-center justify-between gap-4 py-[11px] min-[760px]:table-cell min-[760px]:px-4 min-[760px]:py-[14px] min-[760px]:w-[190px] min-[760px]:whitespace-nowrap before:content-[attr(data-label)] before:flex-none before:text-left before:font-bold before:text-muted before:text-[14px] min-[760px]:before:content-none"
                   >
                     <div className="flex gap-[10px]">
                       <button
