@@ -133,13 +133,13 @@ export function ProductForm({ initial = {}, onClose, onSave }: Props) {
         onSubmit={submit}
       >
         {/* Head */}
-        <div className="flex items-center justify-between gap-3 px-5 py-[18px] border-b border-line">
-          <h2 className="m-0 text-[clamp(20px,5vw,26px)] font-bold">
+        <div className="relative flex items-center justify-center px-5 py-[18px] border-b border-line">
+          <h2 className="m-0 text-[clamp(20px,5vw,26px)] font-bold text-center">
             {isNew ? "Add Product" : "Edit Product"}
           </h2>
           <button
             type="button"
-            className="bg-none border-none text-[30px] leading-none cursor-pointer text-[#555] w-10 h-10"
+            className="absolute right-3 top-1/2 -translate-y-1/2 bg-none border-none text-[30px] leading-none cursor-pointer text-[#555] w-10 h-10"
             onClick={onClose}
             aria-label="Close"
           >
