@@ -86,16 +86,3 @@ CREATE POLICY "Authenticated delete product images"
 UPDATE auth.users
   SET raw_app_meta_data = raw_app_meta_data || '{"role": "admin"}'::jsonb
   WHERE email = 'emmabasseyokon@gmail.com';
-
--- ============================================================
--- SEED PRODUCTS  (optional – uncomment to load sample data)
--- ============================================================
--- INSERT INTO public.products (name, slug, description, price, stock) VALUES
---   ('Classic Leather Shoes',  'classic-leather-shoes',  'Great shoes',                     12000, 20),
---   ('Casual Sneakers',        'casual-sneakers',         'Everyday comfort, all-day wear',  18000, 12),
---   ('Handmade Loafers',       'handmade-loafers',        'Soft sole, hand-stitched leather',35000,  8),
---   ('Elegant Heels',          'elegant-heels',           'Crossed-strap statement pair',    28000,  6),
---   ('Novela',                 'novela',                  'Nice leather foot rides',         50000,  4),
---   ('Half Shoe',              'half-shoe',               'Plush slip-on with logo strap',   20000,  4),
---   ('Palm Slides',            'palm-slides',             'Lightweight woven palm slides',   15000, 10),
---   ('Cross Strap Sandals',    'cross-strap-sandals',     'Suede cross-strap sandals',       22000,  7);
