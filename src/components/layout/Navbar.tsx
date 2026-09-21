@@ -80,13 +80,13 @@ export function Navbar() {
               href={href}
               onClick={() => setMenuOpen(false)}
               className={`
-                no-underline font-medium transition-colors duration-150
-                py-[13px] border-b border-line text-[18px]
-                min-[860px]:py-1 min-[860px]:border-none
+                font-medium transition-colors duration-150
+                py-[13px] text-[18px]
+                min-[860px]:py-1
                 ${
                   isActive(href)
-                    ? "text-accent font-semibold"
-                    : "text-[#495057] hover:text-ink"
+                    ? "text-ink font-semibold underline underline-offset-4"
+                    : "text-[#495057] no-underline hover:text-ink"
                 }
               `}
             >
