@@ -1,8 +1,4 @@
-"use client";
-
-import { useState } from "react";
 import Image from "next/image";
-import { ProductModal } from "./ProductModal";
 import { productPhotos } from "@/lib/utils";
 import type { Product } from "@/types";
 
@@ -36,8 +32,6 @@ function ProductImage({ product }: { product: Product }) {
 }
 
 export function HomeGrid({ products }: Props) {
-  const [selected, setSelected] = useState<Product | null>(null);
-
   return (
     <>
       {/* Hero */}
@@ -64,10 +58,9 @@ export function HomeGrid({ products }: Props) {
       {/* Tiles grid */}
       <div className="grid grid-cols-1 gap-[18px] sm:grid-cols-2 min-[920px]:grid-cols-3 min-[1180px]:grid-cols-4 min-[920px]:gap-[26px]">
         {products.map((p) => (
-          <button
+          <div
             key={p.id}
-            className="flex flex-col p-0 cursor-pointer bg-white border-2 border-[#111] rounded-[16px] overflow-hidden text-center transition-transform duration-150 hover:-translate-y-1 hover:shadow-[0_14px_30px_rgba(0,0,0,.14)]"
-            onClick={() => setSelected(p)}
+            className="flex flex-col bg-white border-2 border-[#111] rounded-[16px] overflow-hidden text-center"
           >
             <div className="relative w-full aspect-[1/0.82] bg-ph">
               <ProductImage product={p} />
@@ -75,13 +68,9 @@ export function HomeGrid({ products }: Props) {
             <div className="px-[14px] py-5 font-serif text-[clamp(20px,4.5vw,26px)] font-semibold">
               {p.name}
             </div>
-          </button>
+          </div>
         ))}
       </div>
-
-      {selected && (
-        <ProductModal product={selected} onClose={() => setSelected(null)} />
-      )}
     </>
   );
 }
