@@ -20,7 +20,7 @@ export function AdminProducts({ products: initial }: Props) {
   const [isPending, startTransition] = useTransition();
 
   const handleAdd = async (data: {
-    name: string; price: number; images: string[];
+    name: string; price: number; images: string[]; is_featured: boolean;
   }) => {
     await createProduct(data);
     startTransition(() => {
@@ -32,7 +32,7 @@ export function AdminProducts({ products: initial }: Props) {
   };
 
   const handleEdit = async (id: string, data: {
-    name: string; price: number; images: string[];
+    name: string; price: number; images: string[]; is_featured: boolean;
   }) => {
     await updateProduct(id, data);
     startTransition(() => {
@@ -56,7 +56,7 @@ export function AdminProducts({ products: initial }: Props) {
     <div className="max-w-[1240px]">
       {/* Add button */}
       <button
-        className="mb-[22px] w-full sm:w-auto inline-flex items-center justify-center border border-transparent rounded-[7px] px-5 py-3 text-[16px] font-semibold cursor-pointer transition-colors bg-accent text-white hover:bg-accent-dark"
+        className="mb-[22px] w-full sm:w-auto inline-flex items-center justify-center border border-transparent rounded-[7px] px-5 py-3 text-[16px] font-semibold cursor-pointer transition-colors bg-black text-white hover:bg-[#222]"
         onClick={() => setEditing({})}
       >
         + Add Product

@@ -7,6 +7,7 @@ interface FormState {
   name: string;
   price: string;
   images: string[];
+  is_featured: boolean;
 }
 
 interface Props {
@@ -15,12 +16,14 @@ interface Props {
     name?: string;
     price?: number;
     images?: string[];
+    is_featured?: boolean;
   };
   onClose: () => void;
   onSave: (data: {
     name: string;
     price: number;
     images: string[];
+    is_featured: boolean;
   }) => Promise<void>;
 }
 
@@ -71,6 +74,7 @@ export function ProductForm({ initial = {}, onClose, onSave }: Props) {
     name: initial.name ?? "",
     price: initial.price != null ? String(initial.price) : "",
     images: initial.images?.filter(Boolean) ?? [],
+    is_featured: initial.is_featured ?? false,
   });
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -112,6 +116,7 @@ export function ProductForm({ initial = {}, onClose, onSave }: Props) {
         name: f.name.trim(),
         price: Number(f.price) || 0,
         images: f.images,
+        is_featured: f.is_featured,
       });
       onClose();
     } catch (err) {
@@ -235,6 +240,19 @@ export function ProductForm({ initial = {}, onClose, onSave }: Props) {
             />
           </label>
 
+          {/* Show on home */}
+          <label className="flex items-center gap-[10px] text-[15px] font-semibold cursor-pointer">
+            <input
+              type="checkbox"
+              className="w-[18px] h-[18px] accent-black cursor-pointer"
+              checked={f.is_featured}
+              onChange={(e) =>
+                setF((s) => ({ ...s, is_featured: e.target.checked }))
+              }
+            />
+            <span>Show on Home page</span>
+          </label>
+
         </div>
 
         {/* Foot */}
@@ -249,7 +267,7 @@ export function ProductForm({ initial = {}, onClose, onSave }: Props) {
           <button
             type="submit"
             disabled={saving || uploading}
-            className="flex-auto min-w-0 max-w-[180px] border border-transparent rounded-[7px] px-[22px] py-[11px] text-[16px] font-semibold cursor-pointer transition-colors bg-accent text-white hover:bg-accent-dark disabled:opacity-60"
+            className="flex-auto min-w-0 max-w-[180px] border border-transparent rounded-[7px] px-[22px] py-[11px] text-[16px] font-semibold cursor-pointer transition-colors bg-black text-white hover:bg-[#222] disabled:opacity-60"
           >
             {saving ? "Saving…" : isNew ? "Add Product" : "Save Changes"}
           </button>

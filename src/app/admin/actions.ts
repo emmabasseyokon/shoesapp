@@ -8,6 +8,7 @@ interface ProductData {
   name: string;
   price: number;
   images: string[];
+  is_featured: boolean;
 }
 
 export async function createProduct(data: ProductData) {
@@ -19,7 +20,7 @@ export async function createProduct(data: ProductData) {
     price: data.price,
     images: data.images,
     is_active: true,
-    is_featured: false,
+    is_featured: data.is_featured,
   });
 
   if (error) throw new Error(error.message);
@@ -38,6 +39,7 @@ export async function updateProduct(id: string, data: ProductData) {
       name: data.name,
       price: data.price,
       images: data.images,
+      is_featured: data.is_featured,
     })
     .eq("id", id);
 
