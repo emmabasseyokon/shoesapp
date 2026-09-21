@@ -134,7 +134,7 @@ export function AdminProducts({ products: initial }: Props) {
                   >
                     <div className="flex gap-[10px]">
                       <button
-                        className="inline-flex border border-transparent rounded-[6px] px-4 py-2 text-[14px] font-semibold cursor-pointer transition-colors bg-warning text-[#212529] hover:bg-warning-dark"
+                        className="inline-flex border border-[#111] rounded-[6px] px-4 py-2 text-[14px] font-semibold cursor-pointer transition-colors bg-white text-[#111] hover:bg-[#f1f3f5]"
                         onClick={() => setEditing(p)}
                       >
                         Edit
