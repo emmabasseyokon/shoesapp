@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
-import { ProductModal } from "./ProductModal";
+import { CardPhotoCarousel } from "./CardPhotoCarousel";
 import { naira, productPhotos } from "@/lib/utils";
 import type { Product } from "@/types";
 
@@ -17,8 +16,15 @@ function orderViaWhatsApp(p: Product) {
   );
 }
 
+const IMAGE_SIZES = "(max-width:560px) 100vw, (max-width:920px) 50vw, 33vw";
+
 function ProductImage({ product }: { product: Product }) {
   const photos = productPhotos(product);
+  if (photos.length > 1) {
+    return (
+      <CardPhotoCarousel photos={photos} name={product.name} sizes={IMAGE_SIZES} />
+    );
+  }
   if (photos.length) {
     return (
       <Image
@@ -26,7 +32,7 @@ function ProductImage({ product }: { product: Product }) {
         alt={product.name}
         fill
         className="object-cover"
-        sizes="(max-width:560px) 100vw, (max-width:920px) 50vw, 33vw"
+        sizes={IMAGE_SIZES}
       />
     );
   }
@@ -51,42 +57,28 @@ interface Props {
 }
 
 export function ProductsContent({ products }: Props) {
-  const [selected, setSelected] = useState<Product | null>(null);
-
   return (
-    <>
-      <div className="grid grid-cols-1 gap-[22px] sm:grid-cols-2 min-[920px]:grid-cols-3 min-[920px]:gap-7">
-        {products.map((p) => (
-          <article
-            key={p.id}
-            className="bg-white border border-line rounded-[12px] overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,.05)] flex flex-col"
-          >
-            <div className="relative w-full aspect-[1/0.78] bg-ph">
-              <ProductImage product={p} />
-            </div>
-            <div className="px-5 pb-[22px] pt-5 flex flex-col gap-3 text-center flex-1">
-              <h3 className="text-[clamp(19px,4.5vw,22px)] font-bold m-0">{p.name}</h3>
-              <div className="text-[22px] font-extrabold my-1">{naira(p.price)}</div>
-              <button
-                className="w-full border border-[#212529] rounded-[7px] px-4 py-3 text-[16px] font-semibold cursor-pointer transition-colors bg-white text-ink hover:bg-[#f1f3f5]"
-                onClick={() => setSelected(p)}
-              >
-                View details
-              </button>
-              <button
-                className="w-full border border-transparent rounded-[7px] px-4 py-3 text-[16px] font-semibold cursor-pointer transition-colors bg-accent text-white hover:bg-accent-dark"
-                onClick={() => orderViaWhatsApp(p)}
-              >
-                Order now
-              </button>
-            </div>
-          </article>
-        ))}
-      </div>
-
-      {selected && (
-        <ProductModal product={selected} onClose={() => setSelected(null)} />
-      )}
-    </>
+    <div className="grid grid-cols-1 gap-[22px] sm:grid-cols-2 min-[920px]:grid-cols-3 min-[920px]:gap-7">
+      {products.map((p) => (
+        <article
+          key={p.id}
+          className="bg-white border border-line rounded-[12px] overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,.05)] flex flex-col"
+        >
+          <div className="relative w-full aspect-[1/0.78] bg-ph">
+            <ProductImage product={p} />
+          </div>
+          <div className="px-5 pb-[22px] pt-5 flex flex-col gap-3 text-center flex-1">
+            <h3 className="text-[clamp(19px,4.5vw,22px)] font-bold m-0">{p.name}</h3>
+            <div className="text-[22px] font-extrabold my-1">{naira(p.price)}</div>
+            <button
+              className="w-full border border-transparent rounded-[7px] px-4 py-3 text-[16px] font-semibold cursor-pointer transition-colors bg-black text-white hover:bg-[#222]"
+              onClick={() => orderViaWhatsApp(p)}
+            >
+              Order now
+            </button>
+          </div>
+        </article>
+      ))}
+    </div>
   );
 }
