@@ -256,20 +256,20 @@ export function ProductForm({ initial = {}, onClose, onSave }: Props) {
         </div>
 
         {/* Foot */}
-        <div className="flex justify-end gap-3 px-5 pb-[22px] pt-4 flex-wrap">
-          <button
-            type="button"
-            className="flex-auto min-w-0 max-w-[140px] border border-transparent rounded-[7px] px-[22px] py-[11px] text-[16px] font-semibold cursor-pointer transition-colors bg-[#6c757d] text-white hover:bg-[#5c636a]"
-            onClick={onClose}
-          >
-            Cancel
-          </button>
+        <div className="flex flex-col gap-3 px-5 pb-[22px] pt-4">
           <button
             type="submit"
             disabled={saving || uploading}
-            className="flex-auto min-w-0 max-w-[180px] border border-transparent rounded-[7px] px-[22px] py-[11px] text-[16px] font-semibold cursor-pointer transition-colors bg-black text-white hover:bg-[#222] disabled:opacity-60"
+            className="w-full border border-transparent rounded-[7px] px-[22px] py-[11px] text-[16px] font-semibold cursor-pointer transition-colors bg-black text-white hover:bg-[#222] disabled:opacity-60"
           >
             {saving ? "Saving…" : isNew ? "Add Product" : "Save Changes"}
+          </button>
+          <button
+            type="button"
+            className="w-full border border-[#111] rounded-[7px] px-[22px] py-[11px] text-[16px] font-semibold cursor-pointer transition-colors bg-white text-[#111] hover:bg-[#f1f3f5]"
+            onClick={onClose}
+          >
+            Cancel
           </button>
         </div>
       </form>
