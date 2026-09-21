@@ -8,7 +8,7 @@ export function Footer() {
         <div className="max-w-[1500px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 pb-9">
           {/* Quick Links */}
           <div>
-            <h4 className="text-[19px] font-bold m-0 mb-4">Quick Links</h4>
+            <h4 className="text-[19px] font-bold m-0 mb-4">Links</h4>
             <Link
               href="/products"
               className="block text-[#dcdcdc] no-underline text-[17px] mb-[14px] w-fit transition-colors duration-150 hover:text-white"
@@ -25,7 +25,7 @@ export function Footer() {
 
           {/* Follow */}
           <div>
-            <h4 className="text-[19px] font-bold m-0 mb-4">Follow Us</h4>
+            <h4 className="text-[19px] font-bold m-0 mb-4">Our Socials</h4>
             <div className="flex gap-[22px]">
               <a
                 href="https://instagram.com/geemanfootwears"
