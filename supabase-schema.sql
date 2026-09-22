@@ -2,12 +2,12 @@
 -- HushCobbler – Supabase schema
 -- Run this once in the SQL editor of a fresh Supabase project.
 --
--- IMPORTANT — already have this DB set up? Re-running this file
--- will NOT fix an existing project: CREATE POLICY here uses new
--- names, so the old, overly-permissive policies would stay
--- active side by side with these (Postgres RLS is permissive —
--- any matching policy grants access). Run supabase-security-fixes.sql
--- instead, which explicitly DROPs the old policies first.
+-- IMPORTANT — already have this table set up under older policy
+-- names? CREATE POLICY here will fail on a name collision, or
+-- (with different names) leave old policies active side by side
+-- with these — Postgres RLS is permissive, so any matching policy
+-- grants access. Drop old policies by name first if migrating an
+-- existing project rather than starting fresh.
 -- ============================================================
 
 -- ============================================================
@@ -31,12 +31,15 @@ CREATE INDEX IF NOT EXISTS idx_products_created_at  ON public.products(created_a
 
 -- auto-update updated_at
 CREATE OR REPLACE FUNCTION public.update_updated_at_column()
-RETURNS TRIGGER AS $$
+RETURNS TRIGGER
+LANGUAGE plpgsql
+SET search_path = ''
+AS $$
 BEGIN
-  NEW.updated_at = NOW();
+  NEW.updated_at = now();
   RETURN NEW;
 END;
-$$ LANGUAGE plpgsql;
+$$;
 
 CREATE OR REPLACE TRIGGER update_products_updated_at
   BEFORE UPDATE ON public.products
