@@ -1,3 +1,4 @@
+import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { AdminProducts } from "@/components/admin/AdminProducts";
 import type { Product } from "@/types";
@@ -6,6 +7,13 @@ export const dynamic = "force-dynamic";
 
 export default async function AdminPage() {
   const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user || user.app_metadata?.role !== "admin") {
+    redirect("/admin/login");
+  }
 
   const { data } = await supabase
     .from("products")
