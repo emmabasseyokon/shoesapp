@@ -23,14 +23,30 @@ export async function POST(req: NextRequest) {
 
   // Convert base64 data URL → Buffer
   const [header, base64] = dataUrl.split(",");
-  const mime = header.match(/:(.*?);/)?.[1] ?? "image/jpeg";
+  const declaredMime = header.match(/:(.*?);/)?.[1] ?? "";
+
+  const ALLOWED_MIME_TO_EXT: Record<string, string> = {
+    "image/jpeg": "jpg",
+    "image/png": "png",
+    "image/webp": "webp",
+  };
+  const ext = ALLOWED_MIME_TO_EXT[declaredMime];
+  if (!ext) {
+    return NextResponse.json({ error: "Unsupported image type" }, { status: 400 });
+  }
+
   const buffer = Buffer.from(base64, "base64");
 
-  const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.jpg`;
+  const MAX_BYTES = 5 * 1024 * 1024;
+  if (buffer.length > MAX_BYTES) {
+    return NextResponse.json({ error: "Image too large" }, { status: 400 });
+  }
+
+  const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
 
   const { error } = await adminStorage.storage
     .from("product-images")
-    .upload(fileName, buffer, { contentType: mime });
+    .upload(fileName, buffer, { contentType: declaredMime });
 
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
