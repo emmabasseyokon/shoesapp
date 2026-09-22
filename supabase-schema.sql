@@ -1,6 +1,13 @@
 -- ============================================================
 -- HushCobbler – Supabase schema
 -- Run this once in the SQL editor of a fresh Supabase project.
+--
+-- IMPORTANT — already have this DB set up? Re-running this file
+-- will NOT fix an existing project: CREATE POLICY here uses new
+-- names, so the old, overly-permissive policies would stay
+-- active side by side with these (Postgres RLS is permissive —
+-- any matching policy grants access). Run supabase-security-fixes.sql
+-- instead, which explicitly DROPs the old policies first.
 -- ============================================================
 
 -- ============================================================
@@ -15,7 +22,8 @@ CREATE TABLE IF NOT EXISTS public.products (
   is_active   BOOLEAN NOT NULL DEFAULT TRUE,
   is_featured BOOLEAN NOT NULL DEFAULT FALSE,
   created_at  TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-  updated_at  TIMESTAMPTZ NOT NULL DEFAULT NOW()
+  updated_at  TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  CONSTRAINT products_price_non_negative CHECK (price >= 0)
 );
 
 CREATE INDEX IF NOT EXISTS idx_products_is_active   ON public.products(is_active);
@@ -39,19 +47,30 @@ CREATE OR REPLACE TRIGGER update_products_updated_at
 -- ============================================================
 ALTER TABLE public.products ENABLE ROW LEVEL SECURITY;
 
--- Anyone can read active products (public store)
-CREATE POLICY "Public read products"
-  ON public.products FOR SELECT USING (TRUE);
+-- Anyone (including anon) can read active products (public store)
+CREATE POLICY "Public read active products"
+  ON public.products FOR SELECT
+  USING (is_active = TRUE);
 
--- Only authenticated users (admin) can write
-CREATE POLICY "Authenticated insert products"
-  ON public.products FOR INSERT TO authenticated WITH CHECK (TRUE);
+-- Admins can read everything, including inactive/draft rows
+CREATE POLICY "Admins read all products"
+  ON public.products FOR SELECT TO authenticated
+  USING ((auth.jwt() -> 'app_metadata' ->> 'role') = 'admin');
 
-CREATE POLICY "Authenticated update products"
-  ON public.products FOR UPDATE TO authenticated USING (TRUE);
+-- Only admins (checked via the JWT app_metadata role, not just
+-- "any logged-in user") can write
+CREATE POLICY "Admins insert products"
+  ON public.products FOR INSERT TO authenticated
+  WITH CHECK ((auth.jwt() -> 'app_metadata' ->> 'role') = 'admin');
 
-CREATE POLICY "Authenticated delete products"
-  ON public.products FOR DELETE TO authenticated USING (TRUE);
+CREATE POLICY "Admins update products"
+  ON public.products FOR UPDATE TO authenticated
+  USING ((auth.jwt() -> 'app_metadata' ->> 'role') = 'admin')
+  WITH CHECK ((auth.jwt() -> 'app_metadata' ->> 'role') = 'admin');
+
+CREATE POLICY "Admins delete products"
+  ON public.products FOR DELETE TO authenticated
+  USING ((auth.jwt() -> 'app_metadata' ->> 'role') = 'admin');
 
 -- ============================================================
 -- STORAGE BUCKET  (product photos)
@@ -65,15 +84,21 @@ CREATE POLICY "Public read product images"
   ON storage.objects FOR SELECT
   USING (bucket_id = 'product-images');
 
--- Authenticated users (admin) can upload
-CREATE POLICY "Authenticated upload product images"
+-- Only admins can upload
+CREATE POLICY "Admins upload product images"
   ON storage.objects FOR INSERT TO authenticated
-  WITH CHECK (bucket_id = 'product-images');
+  WITH CHECK (
+    bucket_id = 'product-images'
+    AND (auth.jwt() -> 'app_metadata' ->> 'role') = 'admin'
+  );
 
--- Authenticated users (admin) can delete
-CREATE POLICY "Authenticated delete product images"
+-- Only admins can delete
+CREATE POLICY "Admins delete product images"
   ON storage.objects FOR DELETE TO authenticated
-  USING (bucket_id = 'product-images');
+  USING (
+    bucket_id = 'product-images'
+    AND (auth.jwt() -> 'app_metadata' ->> 'role') = 'admin'
+  );
 
 -- ============================================================
 -- ADMIN USER SETUP
